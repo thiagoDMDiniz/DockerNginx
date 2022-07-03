@@ -6,7 +6,7 @@ services:
     build:
       context: node
     container_name: app
-    entrypoint: dockerize -wait tcp://db:3306 -timeout 20s docker-entrypoint.sh node index.js
+    entrypoint: dockerize -wait tcp://db:3306 -timeout 20s node index.js
     networks:
       - networknode
     tty: true
@@ -32,10 +32,11 @@ services:
       context: nginx
     container_name: nginx
     networks:
-      - node-network
+      - networknode
     ports:
       - "8080:80"
     depends_on:
+      - db
       - app
 
 networks:
