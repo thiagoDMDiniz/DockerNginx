@@ -1,3 +1,3 @@
 # DockerNginx
-
-Testing
+To run:
+docker-compose up -d --build
