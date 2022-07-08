@@ -1,6 +1,6 @@
-FROM node:15
+FROM node:alpine
 
-WORKDIR /app
+WORKDIR /usr/src/app
 
 COPY . .
 
@@ -11,6 +11,10 @@ RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSI
     && tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
     && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
 
+RUN npm install
+#RUN npm install --save express
+
 EXPOSE 3000
 
-CMD ["node","index.js"]
+#CMD ["node","index.js"]
+ENTRYPOINT npm start
